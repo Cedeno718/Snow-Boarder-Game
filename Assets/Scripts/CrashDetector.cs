@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+     [SerializeField] float loadDelay = .1f;
    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "ground")
         {
-            Debug.Log("WIPEOUT! >.<");
-            SceneManager.LoadScene(0);
+           Invoke("ReloadScene", loadDelay);
         }
     }
+    void ReloadScene()
+   {
+     Debug.Log("WIPEOUT! >.<");
+      SceneManager.LoadScene(0);
+   }
 }
